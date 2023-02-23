@@ -1,0 +1,373 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.fullcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.tables {
+  width: 30%;
+  margin-right: 10px;
+}
+
+.title {
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.menu-search {
+  margin: 10px 0;
+}
+
+.table-search {
+  margin: 10px 0;
+}
+
+.table-search input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 85%;
+}
+
+.menu-search input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 73%;
+}
+
+.menu-search button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 8%;
+  margin-top: 10px;
+}
+.table-search button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 13%;
+  margin-top: 10px;
+}
+
+.menu-search button:hover,
+.menu-search button:focus,
+.table-search button:hover,
+.table-search button:focus {
+  background-color: #45a049;
+}
+
+.table {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.item p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.menu {
+  width: 70%;
+}
+
+.item {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item p {
+  margin: 0;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+td[type="buttons"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+td[type="buttons"] button {
+  margin: 0 5px;
+}
+.popup-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative;
+  text-align: center;
+}
+.close-popup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.close-popup:hover,
+.close-popup:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-title {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.popup-message {
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.popup-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+}
+.popup-content th {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px 15px;
+}
+
+.popup-content td {
+  font-size: 16px;
+  text-align: left;
+  padding: 10px 15px;
+}
+
+.popup-content td:first-child {
+  font-weight: bold;
+}
+
+.popup-content td:last-child {
+  text-align: right;
+}
+
+.popup-content button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px auto 0;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: #3e8e41;
+}
+@media only screen and (max-width: 900px) {
+  .menu-search input[type="text"] {
+    width: 65%;
+  }
+
+  .menu-search button {
+    width: 10%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .menu-search input[type="text"] {
+    width: 60%;
+  }
+
+  .menu-search button {
+    width: 12%;
+  }
+
+  .table-search input[type="text"] {
+    width: 80%;
+  }
+  .table-search button {
+    width: 15%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .menu-search input[type="text"] {
+    width: 50%;
+  }
+
+  .menu-search button {
+    width: 15%;
+  }
+
+  .table-search input[type="text"] {
+    width: 70%;
+  }
+  .table-search button {
+    width: 22%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .menu-search input[type="text"] {
+    width: 42%;
+  }
+
+  .menu-search button {
+    width: 17%;
+  }
+
+  .table-search input[type="text"] {
+    width: 70%;
+  }
+  .table-search button {
+    width: 22%;
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .fullcontainer {
+    flex-direction: column;
+  }
+  .tables,
+  .menu {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .menu-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu-search input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .menu-search button {
+    width: 100%;
+  }
+  .table-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .table-search input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .table-search button {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  td[type="buttons"] {
+    text-align: center;
+    font-size: 6px;
+    
+  }
+  td[type="buttons"] button {
+    width: 29px;
+    padding: 5px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  td[type="buttons"] {
+    display: block;
+    text-align: center;
+    font-size: 8px;
+    
+  }
+  td[type="buttons"] button {
+    width: 29px;
+    padding: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .popup {
+   
+    max-height: 60%;
+    max-width: 80%;
+    background-color: white;
+    align-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+  .popup-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    padding: 20px;
+    border: none;
+    width: 100%;
+    overflow-x: auto;
+    padding-right: calc(10px + 2em);
+  }
+  .close-popup {
+    position: fixed; 
+    top: calc(5% + 10px); 
+    right: calc(50% - 40% - 10px);
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+  }
+}

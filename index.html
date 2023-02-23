@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant App</title>
+  </head>
+  <body>
+    <div class="fullcontainer">
+      <div class="tables">
+        <div class="title">
+          <h1>Tables</h1>
+        </div>
+        <div class="table-search">
+          <input type="text" placeholder="Search Tables" />
+          <button><i class="fa fa-search"></i></button>
+        </div>
+        <div class="table" id="table1">
+          <h2 class="itemname">Table1</h2>
+          <p>Cost: Rs.<span id="table1-cost">0</span></p>
+          <p>Total Items: <span id="table1-count">0</span></p>
+        </div>
+        <div class="table" id="table2">
+          <h2 class="itemname">Table2</h2>
+          <p>Cost: Rs.<span id="table2-cost">0</span></p>
+          <p>Total Items: <span id="table2-count">0</span></p>
+        </div>
+        <div class="table" id="table3">
+          <h2 class="itemname">Table3</h2>
+          <p>Cost: Rs.<span id="table3-cost">0</span></p>
+          <p>Total Items: <span id="table3-count">0</span></p>
+        </div>
+        <div class="table" id="table4">
+          <h2 class="itemname">Table4</h2>
+          <p>Cost: Rs.<span id="table4-cost">0</span></p>
+          <p>Total Items: <span id="table4-count">0</span></p>
+        </div>
+        <div class="table" id="table5">
+          <h2 class="itemname">Table5</h2>
+          <p>Cost: Rs.<span id="table5-cost">0</span></p>
+          <p>Total Items: <span id="table5-count">0</span></p>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="title">
+          <h1>Menu</h1>
+        </div>
+        
+        <div class="menu-search" id="menu-search">
+          <input type="text" placeholder="Search menu" />
+          <button><i class="fa fa-search"></i></button>
+          <button onclick="sortcostMenu()">Rs.<i class="fa fa-sort"></i></button>
+          <button onclick="sortMenu()">a-z <i class="fa fa-sort"></i></button>
+        </div>   
+        <div class="menusort"></div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="masaladosa" foodtype="breakfast">Masala Dosa</h2>
+          <p>Rs.50</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="oniondosa" foodtype="breakfast">Onion Dosa</h2>
+          <p>Rs.45</p>
+        </div> 
+        <div class="item"  draggable="true">
+          <h2 class="itemname" id="idly" foodtype="breakfast">Idly</h2>
+          <p>Rs.35</p>
+        </div> 
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="chapathi" foodtype="breakfast">Chapathi</h2>
+          <p>Rs.60</p>
+        </div> 
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="kinley" foodtype="bevarages">Kinley</h2>
+          <p>Rs.25</p>
+        </div> 
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="thumbsup" foodtype="bevarages">ThumbsUp</h2>
+          <p>Rs.45</p>
+        </div> 
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="cococola" foodtype="bevarages">Cococola</h2>
+          <p>Rs.45</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="frenchfries" foodtype="fries">French Fries</h2>
+          <p>Rs.45</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="vanillaicecream" foodtype="icecream">Vannila Icecream</h2>
+          <p>Rs.35</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="badamkulfi" foodtype="icecream">Badam Kulfi</h2>
+          <p>Rs.30</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="spvegbiryani" foodtype="biryani">Special Veg Biryani</h2>
+          <p>Rs.230</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="msvegbiryani" foodtype="biryani">Mushroom Biryani</h2>
+          <p>Rs.225</p>
+        </div>
+        <div class="item" draggable="true">
+          <h2 class="itemname" id="sppaneerbiryani" foodtype="biryani">Special Paneer Biryani</h2>
+          <p>Rs.250</p>
+        </div>
+        </div>   
+      </div>  
+    </div>
+
+    <div class="popup" id="table-popup">
+      <div class="popup-content">
+        <span class="close-popup" onclick="closeTablePopup()">&times;</span>
+        <h2 class="popup-title">Table Summary</h2>
+        <table class="billsummary">
+          <tr class="billheading">
+            <th>S.No</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Servings</th>
+            <th></th>
+          </tr>
+        </table>
+        <p class="popup-message">This table has <span id="table-count"></span> items, costing Rs.<span id="popup-table-cost"></span></p>
+        <button>Clear Table(Bill-Paid)</button>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
