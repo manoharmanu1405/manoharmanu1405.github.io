@@ -278,26 +278,6 @@ else{
   sortstate=0
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let sortcoststate=0
 const items = document.querySelectorAll(".item");
 const items2=[...items]
