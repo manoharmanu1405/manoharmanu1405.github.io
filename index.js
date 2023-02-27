@@ -1,14 +1,14 @@
 const menuItems = document.querySelectorAll(".item");
 const tables = document.querySelectorAll(".table");
 
-
-
-let selectedTableId; 
-
+let selectedTableId;
 
 for (const item of menuItems) {
   item.addEventListener("dragstart", (event) => {
-    event.dataTransfer.setData("text/plain", item.querySelector(".itemname").id);
+    event.dataTransfer.setData(
+      "text/plain",
+      item.querySelector(".itemname").id
+    );
   });
 }
 
@@ -19,9 +19,9 @@ for (const table of tables) {
 
   table.addEventListener("drop", (event) => {
     event.preventDefault();
-    console.log("triggered")
+    console.log("triggered");
     const itemId = event.dataTransfer.getData("text/plain");
-   
+
     const itemCost = parseInt(
       document.getElementById(itemId).nextElementSibling.textContent.slice(3)
     );
@@ -40,18 +40,16 @@ for (const table of tables) {
 
     const rows = document.querySelectorAll(".billsummary tr");
     let counter = 1;
-    rows.forEach(row => {
-      if ((row.getAttribute("tableno") === table.id) ){
+    rows.forEach((row) => {
+      if (row.getAttribute("tableno") === table.id) {
         row.style.display = "table-row";
-        row.querySelector(".serial").innerHTML=`${counter}`;
+        row.querySelector(".serial").innerHTML = `${counter}`;
         counter++;
-      } 
-      else {
-        if(row.getAttribute("class")==="billheading"){
+      } else {
+        if (row.getAttribute("class") === "billheading") {
           row.style.display = "table-row";
-        }
-        else{
-        row.style.display = "none";
+        } else {
+          row.style.display = "none";
         }
       }
     });
@@ -93,24 +91,14 @@ function addItems(table, itemId, itemCost) {
     const childrow = document.createElement("tr");
     addeditem.appendChild(childrow);
     childrow.setAttribute("tableno", table.id);
-
-
-
-
-
-
     const serial = document.createElement("td");
     serial.setAttribute("class", "serial");
-    childrow.appendChild(serial).innerHTML="hello"
-
-
-
+    childrow.appendChild(serial).innerHTML = "hello";
 
     const name = document.getElementById(itemId).textContent;
     const childcolumn1 = document.createElement("td");
     childcolumn1.setAttribute("type", "name");
     childrow.appendChild(childcolumn1).innerHTML = name;
-
 
     const childcolumn2 = document.createElement("td");
     childcolumn2.setAttribute("type", "price");
@@ -168,10 +156,10 @@ function addItems(table, itemId, itemCost) {
     const removeButton = document.createElement("button");
     removeButton.innerHTML = "<i class='fa fa-trash-o'></i>";
     removeButton.addEventListener("click", () => {
-      childrow.remove()
+      childrow.remove();
 
       const noOfServingsCell = childrow.querySelector("[type='no_servings']");
-      const noOfServings = parseInt(noOfServingsCell.textContent)
+      const noOfServings = parseInt(noOfServingsCell.textContent);
 
       const countElem = document.getElementById(`${table.id}-count`);
       const count = parseInt(countElem.textContent);
@@ -179,20 +167,29 @@ function addItems(table, itemId, itemCost) {
 
       const costElem = document.getElementById(`${table.id}-cost`);
       const cost = parseInt(costElem.textContent);
-      costElem.textContent = cost - itemCost*noOfServings;
+      costElem.textContent = cost - itemCost * noOfServings;
 
+      const rows = document.querySelectorAll(".billsummary tr");
+    let counter = 1;
+    rows.forEach((row) => {
+      if (row.getAttribute("tableno") === table.id) {
+        row.style.display = "table-row";
+        row.querySelector(".serial").innerHTML = `${counter}`;
+        counter++;
+      } else {
+        if (row.getAttribute("class") === "billheading") {
+          row.style.display = "table-row";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    });
 
       const popupMessage = document.querySelector(".popup-message");
       popupMessage.textContent = `This table has ${
         count - noOfServings
-      } items, costing Rs.${cost - itemCost*noOfServings}`;
-
-
-
-
-
+      } items, costing Rs.${cost - itemCost * noOfServings}`;
     });
-    
 
     const childcolumn4 = document.createElement("td");
     childcolumn4.setAttribute("type", "buttons");
@@ -228,11 +225,6 @@ menuSearchInput.addEventListener("keyup", function () {
   searchMenu();
 });
 
-
-
-
-
-
 function searchTable() {
   const searchTerm = tableSearchInput.value.toLowerCase();
   const tables = document.querySelectorAll(".table");
@@ -256,65 +248,99 @@ function searchMenu() {
   items.forEach((item) => {
     const foodtype = item.querySelector(".itemname").getAttribute("foodtype");
     const name = item.querySelector(".itemname").textContent.toUpperCase();
-    if (name.includes(filter) || foodtype.toUpperCase() === filter) {
+    if (name.includes(filter) || foodtype.toUpperCase().includes(filter)) {
       item.style.display = "";
     } else {
       item.style.display = "none";
     }
   });
 }
-
-
-
-
+let sortstate=0
+const itemsa = document.querySelectorAll(".item");
+const items2a=[...itemsa]
 function sortMenu() {
+  const menu = document.querySelector(".menusort");
   const items = Array.from(document.querySelectorAll(".item"));
+  if(sortstate==0){
   items.sort((a, b) =>
     a
       .querySelector(".itemname")
       .textContent.localeCompare(b.querySelector(".itemname").textContent)
   );
-  const menu = document.querySelector(".menusort");
-  menu.innerHTML = "";
-  items.forEach((item) => menu.appendChild(item));
   
+  items.forEach((item) => menu.appendChild(item));
+  sortstate=1
+}
+else{
+  items2a.forEach((item) => {
+    menu.appendChild(item);
+  });
+  sortstate=0
+}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let sortcoststate=0
+const items = document.querySelectorAll(".item");
+const items2=[...items]
 function sortcostMenu() {
-  const menuSort = document.querySelector('.menusort');
-  const items = document.querySelectorAll('.item');
+  const menuSort = document.querySelector(".menusort");
+  if(sortcoststate==0){
   const sortedItems = Array.from(items).sort((a, b) => {
-    const priceA = parseFloat(a.querySelector('p').textContent.slice(3));
-    const priceB = parseFloat(b.querySelector('p').textContent.slice(3));
+    const priceA = parseFloat(a.querySelector("p").textContent.slice(3));
+    const priceB = parseFloat(b.querySelector("p").textContent.slice(3));
     return priceA - priceB;
   });
-  sortedItems.forEach(item => {
+  sortedItems.forEach((item) => {
     menuSort.appendChild(item);
   });
-  
+  sortcoststate=1
 }
+else{
+  items2.forEach((item) => {
+    menuSort.appendChild(item);
+  });
+  sortcoststate=0
 
+}
+}
 
 const generateBillButton = document.querySelector("#table-popup button");
 generateBillButton.addEventListener("click", generateBill);
 function generateBill() {
-const table = document.querySelector('.billsummary');
-req=selectedTableId;
-const rowsToRemove = table.querySelectorAll(`[tableno="${req}"]`);
-rowsToRemove.forEach(row => {
-  row.remove();
-});
+  const table = document.querySelector(".billsummary");
+  req = selectedTableId;
+  const rowsToRemove = table.querySelectorAll(`[tableno="${req}"]`);
+  rowsToRemove.forEach((row) => {
+    row.remove();
+  });
 
-const countElem = document.getElementById(`${req}-count`);
-countElem.textContent = 0
-count=0
+  const countElem = document.getElementById(`${req}-count`);
+  countElem.textContent = 0;
+  count = 0;
 
+  const costElem = document.getElementById(`${req}-cost`);
+  cost = 0;
+  costElem.textContent = 0;
 
-const costElem = document.getElementById(`${req}-cost`);
-cost=0
-costElem.textContent = 0
-
-const popupMessage = document.querySelector(".popup-message");
-popupMessage.textContent = `This table has ${count} items, costing Rs.${cost}`;
+  const popupMessage = document.querySelector(".popup-message");
+  popupMessage.textContent = `This table has ${count} items, costing Rs.${cost}`;
 }
-
